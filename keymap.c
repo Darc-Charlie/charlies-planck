@@ -59,8 +59,8 @@ enum planck_keycodes {
 #define TFINSAL LCTL(LALT(KC_DEL))    //three finger salute
 #define TSKMNGR LCTL(S(KC_ESC))       //windows taskmanager
 #define TERMINL LCTL(LALT(KC_T))      //Ubuntu terminal
-#define W_WKSUP LGUI(LCTL(KC_RIGHT))  //Windows Workstation up
-#define W_WKSDN LGUI(LCTL(KC_LEFT))   //Windows Workstation down
+#define W_WKSUP LGUI(LCTL(KC_LEFT))  //Windows Workstation up
+#define W_WKSDN LGUI(LCTL(KC_RIGHT))   //Windows Workstation down
 #define U_WKSUP LGUI(KC_PGUP)         //Ubuntu Workstation up
 #define U_WKSDN LGUI(KC_PGDN)         //Ubuntu Workstation down
 
