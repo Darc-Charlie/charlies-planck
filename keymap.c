@@ -19,13 +19,7 @@ extern keymap_config_t keymap_config;
 #define _RAISE 4
 #define _ADJUST 16
 #define _NUMPAD 17
-#define _ARROWS 18
-#define _PROGRAM 19
-#define _EXT_ALL M(10)
-#define _BRTHON M(11)
-#define _BRTHOFF M(12)
-#define _BRTHUP M(13)
-#define _BRTHDOWN M(14)
+#define _EXIT_L M(10)
 #define _GSHLLREL M(15)
 
 
@@ -35,13 +29,7 @@ enum planck_keycodes {
   RAISE,
   BACKLIT,
   NUMPAD,
-  ARROWS,
-  PROGRAM,
-  EXT_ALL,
-  BRTHON,
-  BRTHOFF,
-  BRTHUP,
-  BRTHDOWN,
+  EXIT_L,
   TFINSAL,
   TSKMNGR,
   TERMINL,
@@ -75,14 +63,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise |Progrm|Numpad|Arrows|      |
+ * | Ctrl |Numpad| GUI  | Alt  |Lower |    Space    |Raise | Left | Down |  Up  | Right|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = {
-  {KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,          KC_O,    KC_P,    KC_BSPC},
-  {KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,          KC_L,    KC_SCLN, KC_ENT},
-  {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,       KC_DOT,  KC_SLSH, KC_QUOT },
-  {BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   MO(_PROGRAM), NUMPAD,  ARROWS,   XXXXXXX}
+  {KC_ESC,  KC_Q,       KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,    KC_BSPC},
+  {KC_TAB,  KC_A,       KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,     KC_L,    KC_SCLN, KC_ENT},
+  {KC_LSFT, KC_Z,       KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,  KC_SLSH, KC_QUOT },
+  {KC_LCTL, MO(_NUMPAD), KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT,  KC_DOWN, KC_UP,   KC_RIGHT}
 },
 
 /* Lower
@@ -91,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 | Home | End  | Play |      |  |   |
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 | Home | End  | Play |   |  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Prev | Stop | Next |      |
  * `-----------------------------------------------------------------------------------'
@@ -99,17 +87,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = {
   {KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL},
   {_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______},
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, KC_HOME, KC_END, KC_MPLY, _______, KC_PIPE},
+  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_HOME, KC_END,  KC_MPLY, KC_PIPE, _______},
   {_______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MSTP, KC_MNXT, _______}
 },
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Ins  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |Pg Up | Pg Dn|      |      |  \   |
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |Pg Up | Pg Dn|      |  \   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Vol- | Vol+ | Mute |      |
  * `-----------------------------------------------------------------------------------'
@@ -117,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = {
   {KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_INS},
   {_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, _______},
-  {KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PGUP, KC_PGDN, XXXXXXX, XXXXXXX, KC_BSLS},
+  {KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PGUP, KC_PGDN, XXXXXXX, KC_BSLS, XXXXXXX},
   {_______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, KC_VOLU, KC_MUTE, _______}
 },
 
@@ -142,56 +130,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Numpad
  * ,-----------------------------------------------------------------------------------.
- * |      |NumLoc|brthon|brthup|      | Sleep|      |BckSpc|  7   |  8   |  9   |  /   |
+ * |      |NumLoc|3finSl|gshlrl|W_Wup |W_Wdn |      |  /   |  7   |  8   |  9   | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |Scrloc|brthof|brthdn|      |      |      |Enter |  4   |  5   |  6   |  *   |
+ * |      |Scrloc|TskMgr|Termnl|U_Wup |U_Wdn |      |Bcklit|  4   |  5   |  6   |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Calc |      |      |      |      |      |      |  1   |  2   |  3   |  -   |
+ * |      | Calc |      |      |      |      |      |      |  1   |  2   |  3   |  *   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |  0   |  .   |  +   | EXIT |
+ * |      |      |      |      |      |             |      |  0   |  .   |  +   |  -   |
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = {
-  {_______, KC_NLCK,  BRTHON,  BRTHUP,   _______, KC_SYSTEM_SLEEP,  _______, KC_BSPC, KC_P7,   KC_P8,    KC_P9,  KC_PSLS},
-  {_______, KC_SLCK,  BRTHOFF, BRTHDOWN, _______, _______,          _______, KC_PENT, KC_P4,   KC_P5,    KC_P6,  KC_PAST},
-  {_______, KC_CALC,  _______, _______,  _______, _______,          _______, _______, KC_P1,   KC_P2,    KC_P3,  KC_PMNS},
-  {_______, _______,  _______, _______,  _______, _______,          _______, _______, KC_P0,   KC_PDOT,  KC_PPLS, EXT_ALL}
-},
-
-/* ARROWS
- * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      | Up   |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      | Left | Down | Right|
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      | EXIT |
- * `-----------------------------------------------------------------------------------'
- */
-[_ARROWS] = {
-  {_______, _______,  _______, _______,  _______, _______, _______, _______, _______,   _______,  _______,  _______},
-  {_______, _______,  _______, _______,  _______, _______, _______, _______, _______,   _______,  KC_UP,    _______},
-  {_______, _______,  _______, _______,  _______, _______, _______, _______, _______,   KC_LEFT,  KC_DOWN,  KC_RIGHT},
-  {_______, _______,  _______, _______,  _______, _______, _______, _______, XXXXXXX,   XXXXXXX,  XXXXXXX,  EXT_ALL}
-},
-
-/* PROGRAM
- * ,-----------------------------------------------------------------------------------.
- * |      |3finSl|gshlrl|W_Wup |W_Wdn |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |TskMgr|Termnl|U_Wup |U_Wdn |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
- * `-----------------------------------------------------------------------------------'
- */
-[_PROGRAM] = {
-  {_______, TFINSAL,  _GSHLLREL,  W_WKSUP,  W_WKSDN, _______, _______, _______, _______,   _______,  _______,  _______},
-  {_______, TSKMNGR,  TERMINL,    U_WKSUP,  U_WKSDN, _______, _______, _______, _______,   _______,  _______,  _______},
-  {_______, _______,  _______,    _______,  _______, _______, _______, _______, _______,   _______,  _______,  _______},
-  {_______, _______,  _______,    _______,  _______, _______, _______, _______, _______,   XXXXXXX,  XXXXXXX,  _______}
+  {_______, KC_NLCK,  TFINSAL, _GSHLLREL, W_WKSUP,  W_WKSDN,  _______, KC_PSLS, KC_P7,   KC_P8,    KC_P9,  KC_BSPC},
+  {_______, KC_SLCK,  TSKMNGR, TERMINL,   U_WKSUP,  U_WKSDN,  _______, BACKLIT, KC_P4,   KC_P5,    KC_P6,  KC_PENT},
+  {_______, KC_CALC,  _______, _______,   _______,  _______,  _______, _______, KC_P1,   KC_P2,    KC_P3,  KC_PAST},
+  {_______, _______,  _______, _______,   _______,  _______,  _______, _______, KC_P0,   KC_PDOT,  KC_PPLS, KC_PMNS}
 }
 
 };
@@ -244,7 +196,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case NUMPAD:
+    /*case NUMPAD:
       if (record->event.pressed) {
         #ifdef BACKLIGHT_ENABLE
           breathing_speed_dec(0);
@@ -254,61 +206,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_RAISE);
         layer_off(_LOWER);
         layer_off(_ADJUST);
-        layer_off(_ARROWS);
-        layer_off(_PROGRAM);
         layer_on(_NUMPAD);
       }
       return false;
       break;
-    case ARROWS:
-      if (record->event.pressed) {
-        #ifdef BACKLIGHT_ENABLE
-          breathing_speed_dec(0);
-          breathing_enable();
-        #endif
-
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_off(_NUMPAD);
-        layer_off(_PROGRAM);
-        layer_on(_ARROWS);
-      }
-      return false;
-      break;
-    case EXT_ALL:
+    case EXIT_L:
       if (record->event.pressed) {
         #ifdef BACKLIGHT_ENABLE
           breathing_disable();
         #endif
 
         layer_off(_NUMPAD);
-        layer_off(_ARROWS);
-        layer_off(_PROGRAM);
       }
       return false;
-      break;
-    case BRTHON:
-      if (record->event.pressed) {
-          breathing_speed_set(1);
-          breathing_enable();
-      }
-      break;
-    case BRTHOFF:
-      if (record->event.pressed) {
-          breathing_disable();
-      }
-      break;
-    case BRTHUP:
-      if (record->event.pressed) {
-          breathing_speed_inc(1);
-      }
-      break;
-    case BRTHDOWN:
-      if (record->event.pressed) {
-          breathing_speed_dec(1);
-      }
-      break;
+      break;*/
   }
   return true;
 }
